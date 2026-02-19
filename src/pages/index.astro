@@ -36,9 +36,28 @@
 				min-width: 100%;
 				min-height: 100%;
 				object-fit: cover;
-				object-position: center;
+				/* Default: keep skydivers (upper-center) in frame */
+				object-position: 50% 35%;
 				display: block;
 				vertical-align: middle;
+			}
+			/* Very narrow/tall (e.g. phone portrait): emphasize top-center */
+			@media (max-width: 480px) {
+				.splash img {
+					object-position: 50% 25%;
+				}
+			}
+			/* Tablet: slight bias to upper-center */
+			@media (min-width: 481px) and (max-width: 1023px) {
+				.splash img {
+					object-position: 50% 32%;
+				}
+			}
+			/* Wide viewport: classic center */
+			@media (min-width: 1024px) {
+				.splash img {
+					object-position: center;
+				}
 			}
 		</style>
 	</head>
