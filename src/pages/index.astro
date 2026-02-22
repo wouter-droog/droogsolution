@@ -1,31 +1,19 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
 import Splash from '../components/Splash.astro';
 import AccordionItem from '../components/AccordionItem.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Protest+Guerrilla&display=swap"
-			rel="stylesheet"
-		/>
+<BaseLayout
+	title="Wouter Droog | Freelance SDET & Test Automation Architect"
+	description="Wouter Droog — Freelance SDET & Test Automation Architect in the Netherlands. Expert in cloud-native testing, API automation, and quality engineering."
+>
+	<Fragment slot="head">
 		<style>
-			body {
-				font-family: 'Baskervville', serif;
-				margin: 0;
-			}
 			main {
-				min-height: 100dvh;
 				min-height: 100vh;
-				background: linear-gradient(180deg, #3C505F 0%, #2D4151 100%);
+				min-height: 100dvh;
+				background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
 				position: relative;
 				display: flex;
 				align-items: flex-start;
@@ -44,18 +32,21 @@ import AccordionItem from '../components/AccordionItem.astro';
 				pointer-events: none;
 				z-index: 0;
 			}
-			.bg-logo img {
+			.bg-logo img,
+			.bg-logo svg {
 				width: 50%;
 				max-width: 400px;
 				opacity: 0.12;
 			}
 			@media (min-width: 768px) {
-				.bg-logo img {
+				.bg-logo img,
+				.bg-logo svg {
 					max-width: 550px;
 				}
 			}
 			@media (min-width: 1200px) {
-				.bg-logo img {
+				.bg-logo img,
+				.bg-logo svg {
 					max-width: 700px;
 				}
 			}
@@ -89,15 +80,17 @@ import AccordionItem from '../components/AccordionItem.astro';
 			.intro-content p:last-of-type {
 				margin-bottom: 0;
 			}
+			.coming-soon {
+				color: var(--color-text);
+				opacity: 0.8;
+				font-style: italic;
+			}
 			.intro-content ul {
 				margin: 0.5rem 0 1rem;
 				padding-left: 1.25rem;
 			}
 			.intro-content li {
 				margin-bottom: 0.5rem;
-			}
-			.intro-content li:last-child {
-				margin-bottom: 0;
 			}
 			@media (min-width: 768px) {
 				main {
@@ -132,60 +125,88 @@ import AccordionItem from '../components/AccordionItem.astro';
 				}
 			}
 		</style>
-	</head>
-	<body>
-		<Splash />
-		<main>
-			<div class="bg-logo" aria-hidden="true">
-				<img src="/Logo-Wouter-Droog-Grijs.svg" alt="" />
-			</div>
-			<div class="accordion-wrapper">
-				<nav class="accordion-nav" aria-label="Main navigation">
-					<AccordionItem title="Introduction" id="introduction">
-						<div class="intro-content">
-							<p>I am a Software Development Engineer in Test (SDET) and Test Automation Architect based in the Netherlands, helping organizations build reliable, scalable software in complex cloud environments.</p>
-							<p>With a strong background in software development, I design and implement test automation frameworks for microservices, APIs, and modern web applications. My contribution goes beyond automation alone. I analyze business logic at code level, challenge assumptions, and validate system behavior from both a technical and functional perspective.</p>
-							<p>I add value across the entire Software Development Life Cycle (SDLC) — from early requirement analysis and architectural discussions to CI/CD integration, performance validation, and production readiness. By combining development expertise with strategic quality engineering, I help teams detect risks early, strengthen system design, and ensure business requirements will serve the needs of the end user.</p>
-							<p>I specialize in:</p>
-							<ul>
-								<li>Cloud-native and distributed systems</li>
-								<li>API and integration testing</li>
-								<li>Performance and reliability engineering</li>
-								<li>Automation architecture for CI/CD</li>
-							</ul>
-							<p>As a freelance quality engineering consultant, I focus on creating sustainable solutions that improve feedback cycles, reduce production risk, and enable confident continuous delivery.</p>
-						</div>
-					</AccordionItem>
-					<AccordionItem title="Experience" id="experience">
-						<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					</AccordionItem>
-					<AccordionItem title="Testimonials" id="testimonials">
-						<p>Curabitur pretium tincidunt lacus. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices.</p>
-					</AccordionItem>
-					<AccordionItem title="Contact" id="contact">
-						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
-					</AccordionItem>
-				</nav>
-			</div>
-		</main>
-	</body>
-</html>
+	</Fragment>
+	<Splash />
+	<main id="main-content">
+		<div class="bg-logo" aria-hidden="true">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240.94 283.46"><defs><style>.cls-1{fill:#949192}.cls-2,.cls-4{fill:#bcb9b9}.cls-3{fill:#e7e6e6}.cls-4{stroke:#bcb9b9;stroke-miterlimit:10}</style></defs><polygon class="cls-1" points="139.6 35.43 69.08 80.89 31.7 181.14 100.52 181.14 139.6 35.43"/><polygon class="cls-2" points="198.76 181.14 100.52 181.14 100.52 181.14 142.67 131.51 198.76 181.14"/><polygon class="cls-3" points="209.24 106.41 139.6 35.43 119.36 110.88 198.76 181.14 209.24 106.41"/><path class="cls-4" d="M32.22,247.65V216.26H45.45a14,14,0,0,1,5.38,1.06,14.2,14.2,0,0,1,4.63,3.11,14.79,14.79,0,0,1,3.22,4.93,18.87,18.87,0,0,1,0,13.19,14.79,14.79,0,0,1-3.22,4.93,14.2,14.2,0,0,1-4.63,3.11,14,14,0,0,1-5.38,1.06Zm3.56-3.36h9.53a10,10,0,0,0,5.83-1.71A11.35,11.35,0,0,0,55,238.07,13.86,13.86,0,0,0,56.31,232,14,14,0,0,0,55,225.79a11.12,11.12,0,0,0-3.82-4.48,10.11,10.11,0,0,0-5.83-1.69H35.78Z"/><path class="cls-4" d="M68.64,247.65V216.26h15a10.88,10.88,0,0,1,7.7,2.65,9.3,9.3,0,0,1,2.87,7.16,8.86,8.86,0,0,1-1.16,4.84,7.85,7.85,0,0,1-2.92,2.73A15.83,15.83,0,0,1,86.66,235l8.26,12.66H90.69l-7.58-12H72.2v12Zm3.56-15.41H83.06a12,12,0,0,0,3.46-.52,6.23,6.23,0,0,0,3-1.88,5.42,5.42,0,0,0,1.21-3.77,5.9,5.9,0,0,0-2-4.72,8.13,8.13,0,0,0-5.41-1.73h-11Z"/><path class="cls-4" d="M117.39,248a16.64,16.64,0,0,1-6.49-1.23,14.67,14.67,0,0,1-5.05-3.46,15.8,15.8,0,0,1-3.25-5.15,17.7,17.7,0,0,1,0-12.5,15.88,15.88,0,0,1,3.25-5.12,14.67,14.67,0,0,1,5.05-3.46,17.76,17.76,0,0,1,13,0,14.76,14.76,0,0,1,5,3.46,15.88,15.88,0,0,1,3.25,5.12,17.7,17.7,0,0,1,0,12.5,15.8,15.8,0,0,1-3.25,5.15,14.76,14.76,0,0,1-5,3.46A16.66,16.66,0,0,1,117.39,248Zm0-3.46a12.55,12.55,0,0,0,6.62-1.68,11.43,11.43,0,0,0,4.27-4.56,14.45,14.45,0,0,0,0-12.78A11.48,11.48,0,0,0,124,221a13.82,13.82,0,0,0-13.21,0,11.46,11.46,0,0,0-4.29,4.53,14.45,14.45,0,0,0,0,12.78,11.41,11.41,0,0,0,4.29,4.56A12.56,12.56,0,0,0,117.39,244.57Z"/><path class="cls-4" d="M156.05,248a16.66,16.66,0,0,1-6.5-1.23,14.67,14.67,0,0,1-5.05-3.46,15.8,15.8,0,0,1-3.25-5.15,17.7,17.7,0,0,1,0-12.5,15.88,15.88,0,0,1,3.25-5.12,14.67,14.67,0,0,1,5.05-3.46,17.76,17.76,0,0,1,13,0,14.67,14.67,0,0,1,5.05,3.46,15.88,15.88,0,0,1,3.25,5.12,17.7,17.7,0,0,1,0,12.5,15.8,15.8,0,0,1-3.25,5.15,14.67,14.67,0,0,1-5.05,3.46A16.64,16.64,0,0,1,156.05,248Zm0-3.46a12.51,12.51,0,0,0,6.61-1.68,11.43,11.43,0,0,0,4.27-4.56,14.45,14.45,0,0,0,0-12.78,11.48,11.48,0,0,0-4.27-4.53,13.82,13.82,0,0,0-13.21,0,11.46,11.46,0,0,0-4.29,4.53,14.45,14.45,0,0,0,0,12.78,11.41,11.41,0,0,0,4.29,4.56A12.6,12.6,0,0,0,156.05,244.57Z"/><path class="cls-4" d="M194.13,248a15.14,15.14,0,0,1-8.23-2.16,14.4,14.4,0,0,1-5.29-5.81,17.69,17.69,0,0,1-1.85-8.11,17.29,17.29,0,0,1,1.9-8.11A14.59,14.59,0,0,1,186,218a15.23,15.23,0,0,1,8.18-2.16,15.44,15.44,0,0,1,8.8,2.49,15,15,0,0,1,5.48,6.42h-3.89a10.58,10.58,0,0,0-4-4,12.06,12.06,0,0,0-6.14-1.47A12.35,12.35,0,0,0,188,221a11.14,11.14,0,0,0-4.19,4.53,13.86,13.86,0,0,0-1.45,6.4,14.13,14.13,0,0,0,1.42,6.38,11,11,0,0,0,4.15,4.56,13,13,0,0,0,11.91.45,10.51,10.51,0,0,0,4.12-3.56,9.69,9.69,0,0,0,1.59-5.6H194V231h14.75v16.69h-3.27V242.1A13.62,13.62,0,0,1,203,245a12.76,12.76,0,0,1-3.77,2.21A13.92,13.92,0,0,1,194.13,248Z"/></svg>
+		</div>
+		<div class="accordion-wrapper">
+			<nav class="accordion-nav" aria-label="Main navigation">
+				<AccordionItem title="Introduction" id="introduction">
+					<div class="intro-content">
+						<p>I am a Software Development Engineer in Test (SDET) and Test Automation Architect based in the Netherlands, helping organizations build reliable, scalable software in complex cloud environments.</p>
+						<p>With a strong background in software development, I design and implement test automation frameworks for microservices, APIs, and modern web applications. My contribution goes beyond automation alone. I analyze business logic at code level, challenge assumptions, and validate system behavior from both a technical and functional perspective.</p>
+						<p>I add value across the entire Software Development Life Cycle (SDLC), from early requirement analysis and architectural discussions to CI/CD integration, performance validation, and production readiness. By combining development expertise with strategic quality engineering, I help teams detect risks early, strengthen system design, and ensure business requirements will serve the needs of the end user.</p>
+						<p>I specialize in:</p>
+						<ul>
+							<li>Cloud-native and distributed systems</li>
+							<li>API and integration testing</li>
+							<li>Performance and reliability engineering</li>
+							<li>Automation architecture for CI/CD</li>
+						</ul>
+						<p>As a freelance quality engineering consultant, I focus on creating sustainable solutions that improve feedback cycles, reduce production risk, and enable confident continuous delivery.</p>
+					</div>
+				</AccordionItem>
+				<AccordionItem title="Experience" id="experience">
+					<p class="coming-soon">Coming soon</p>
+				</AccordionItem>
+				<AccordionItem title="Testimonials" id="testimonials">
+					<p class="coming-soon">Coming soon</p>
+				</AccordionItem>
+				<AccordionItem title="Contact" id="contact">
+					<p class="coming-soon">Coming soon</p>
+				</AccordionItem>
+			</nav>
+		</div>
+	</main>
+	<script>
+		const triggers = document.querySelectorAll('[data-accordion-trigger]');
 
-<script>
-	document.querySelectorAll('[data-accordion-trigger]').forEach((trigger) => {
-		trigger.addEventListener('click', () => {
-			const item = trigger.closest('[data-accordion-item]');
-			const isOpen = item?.classList.contains('open');
+		triggers.forEach((trigger) => {
+			trigger.addEventListener('click', () => {
+				const item = trigger.closest('[data-accordion-item]');
+				const isOpen = item?.classList.contains('open');
 
-			document.querySelectorAll('[data-accordion-item]').forEach((other) => {
-				other.classList.remove('open');
-				other.querySelector('[data-accordion-trigger]')?.setAttribute('aria-expanded', 'false');
+				document.querySelectorAll('[data-accordion-item]').forEach((other) => {
+					other.classList.remove('open');
+					other.querySelector('[data-accordion-trigger]')?.setAttribute('aria-expanded', 'false');
+				});
+
+				if (!isOpen) {
+					item?.classList.add('open');
+					trigger.setAttribute('aria-expanded', 'true');
+				}
 			});
+		});
 
-			if (!isOpen) {
-				item?.classList.add('open');
-				trigger.setAttribute('aria-expanded', 'true');
+		document.querySelector('.accordion-nav')?.addEventListener('keydown', (e) => {
+			const target = e.target as HTMLElement;
+			if (!target.matches('[data-accordion-trigger]')) return;
+
+			const triggerList = Array.from(triggers);
+			const currentIndex = triggerList.indexOf(target as Element);
+
+			switch (e.key) {
+				case 'ArrowDown':
+				case 'ArrowRight':
+					e.preventDefault();
+					triggerList[(currentIndex + 1) % triggerList.length]?.focus();
+					break;
+				case 'ArrowUp':
+				case 'ArrowLeft':
+					e.preventDefault();
+					triggerList[(currentIndex - 1 + triggerList.length) % triggerList.length]?.focus();
+					break;
+				case 'Home':
+					e.preventDefault();
+					triggerList[0]?.focus();
+					break;
+				case 'End':
+					e.preventDefault();
+					triggerList[triggerList.length - 1]?.focus();
+					break;
 			}
 		});
-	});
-</script>
+	</script>
+</BaseLayout>

@@ -34,17 +34,17 @@ const triggerId = `trigger-${id}`;
 
 <style>
 	.accordion-item {
-		border-bottom: 1px solid rgba(119, 201, 231, 0.2);
+		border-bottom: 1px solid var(--color-border);
 	}
 	.accordion-item:first-child {
-		border-top: 1px solid rgba(119, 201, 231, 0.2);
+		border-top: 1px solid var(--color-border);
 	}
 	.accordion-trigger {
 		width: 100%;
 		padding: 1rem 0;
 		background: none;
 		border: none;
-		color: #77C9E7;
+		color: var(--color-primary);
 		font-family: inherit;
 		font-size: 1.25rem;
 		text-align: left;
@@ -54,7 +54,7 @@ const triggerId = `trigger-${id}`;
 	}
 	.accordion-trigger:hover,
 	.accordion-trigger:focus-visible {
-		color: #FFFFFF;
+		color: var(--color-text);
 	}
 	.accordion-trigger::after {
 		content: '+';
@@ -67,27 +67,28 @@ const triggerId = `trigger-${id}`;
 		content: '−';
 	}
 	.accordion-trigger:focus-visible {
-		outline: 2px solid #77C9E7;
+		outline: 2px solid var(--color-primary);
 		outline-offset: 2px;
 	}
 	.accordion-panel {
-		overflow-y: auto;
-		overflow-x: hidden;
+		overflow: hidden;
 		max-height: 0;
 		transition: max-height 0.35s ease-out;
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-	}
-	.accordion-panel::-webkit-scrollbar {
-		display: none;
 	}
 	.accordion-item.open .accordion-panel {
 		max-height: min(80vh, 1200px);
+		overflow-y: auto;
+		overflow-x: hidden;
 		transition: max-height 0.4s ease-in;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	.accordion-item.open .accordion-panel::-webkit-scrollbar {
+		display: none;
 	}
 	.accordion-content {
 		padding: 0 0 1.25rem;
-		color: #FFFFFF;
+		color: var(--color-text);
 		font-size: 1rem;
 		line-height: 1.6;
 		overflow-wrap: break-word;
