@@ -30,7 +30,8 @@ import AccordionItem from '../components/AccordionItem.astro';
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				overflow: hidden;
+				overflow-y: auto;
+				overflow-x: hidden;
 			}
 			.bg-logo {
 				position: absolute;
@@ -58,6 +59,22 @@ import AccordionItem from '../components/AccordionItem.astro';
 				flex-direction: column;
 				gap: 0;
 			}
+			.intro-content p {
+				margin: 0 0 1rem;
+			}
+			.intro-content p:last-of-type {
+				margin-bottom: 0;
+			}
+			.intro-content ul {
+				margin: 0.5rem 0 1rem;
+				padding-left: 1.25rem;
+			}
+			.intro-content li {
+				margin-bottom: 0.5rem;
+			}
+			.intro-content li:last-child {
+				margin-bottom: 0;
+			}
 		</style>
 	</head>
 	<body>
@@ -69,7 +86,19 @@ import AccordionItem from '../components/AccordionItem.astro';
 			<div class="accordion-wrapper">
 				<nav class="accordion-nav" aria-label="Main navigation">
 					<AccordionItem title="Introduction" id="introduction">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+						<div class="intro-content">
+							<p>I am a Software Development Engineer in Test (SDET) and Test Automation Architect based in the Netherlands, helping organizations build reliable, scalable software in complex cloud environments.</p>
+							<p>With a strong background in software development, I design and implement test automation frameworks for microservices, APIs, and modern web applications. My contribution goes beyond automation alone. I analyze business logic at code level, challenge assumptions, and validate system behavior from both a technical and functional perspective.</p>
+							<p>I add value across the entire Software Development Life Cycle (SDLC) — from early requirement analysis and architectural discussions to CI/CD integration, performance validation, and production readiness. By combining development expertise with strategic quality engineering, I help teams detect risks early, strengthen system design, and ensure business requirements will serve the needs of the end user.</p>
+							<p>I specialize in:</p>
+							<ul>
+								<li>Cloud-native and distributed systems</li>
+								<li>API and integration testing</li>
+								<li>Performance and reliability engineering</li>
+								<li>Automation architecture for CI/CD</li>
+							</ul>
+							<p>As a freelance quality engineering consultant, I focus on creating sustainable solutions that improve feedback cycles, reduce production risk, and enable confident continuous delivery.</p>
+						</div>
 					</AccordionItem>
 					<AccordionItem title="Experience" id="experience">
 						<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

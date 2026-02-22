@@ -71,12 +71,18 @@ const triggerId = `trigger-${id}`;
 		outline-offset: 2px;
 	}
 	.accordion-panel {
-		overflow: hidden;
+		overflow-y: auto;
+		overflow-x: hidden;
 		max-height: 0;
 		transition: max-height 0.35s ease-out;
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+	}
+	.accordion-panel::-webkit-scrollbar {
+		display: none;
 	}
 	.accordion-item.open .accordion-panel {
-		max-height: 500px;
+		max-height: min(80vh, 1200px);
 		transition: max-height 0.4s ease-in;
 	}
 	.accordion-content {
@@ -84,5 +90,6 @@ const triggerId = `trigger-${id}`;
 		color: #FFFFFF;
 		font-size: 1rem;
 		line-height: 1.6;
+		overflow-wrap: break-word;
 	}
 </style>
