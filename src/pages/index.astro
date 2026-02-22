@@ -1,5 +1,6 @@
 ---
 import Splash from '../components/Splash.astro';
+import AccordionItem from '../components/AccordionItem.astro';
 ---
 
 <html lang="en">
@@ -19,13 +20,87 @@ import Splash from '../components/Splash.astro';
 		<style>
 			body {
 				font-family: 'Baskervville', serif;
+				margin: 0;
+			}
+			main {
+				min-height: 100dvh;
+				min-height: 100vh;
+				background: linear-gradient(180deg, #3C505F 0%, #2D4151 100%);
+				position: relative;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				overflow: hidden;
+			}
+			.bg-logo {
+				position: absolute;
+				inset: 0;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				pointer-events: none;
+				z-index: 0;
+			}
+			.bg-logo img {
+				width: 50%;
+				max-width: 400px;
+				opacity: 0.12;
+			}
+			.accordion-wrapper {
+				position: relative;
+				z-index: 1;
+				width: 100%;
+				max-width: 560px;
+				padding: 2rem;
+			}
+			.accordion-nav {
+				display: flex;
+				flex-direction: column;
+				gap: 0;
 			}
 		</style>
 	</head>
 	<body>
 		<Splash />
 		<main>
-			<h1>Astro</h1>
+			<div class="bg-logo" aria-hidden="true">
+				<img src="/Logo-Wouter-Droog-Grijs.svg" alt="" />
+			</div>
+			<div class="accordion-wrapper">
+				<nav class="accordion-nav" aria-label="Main navigation">
+					<AccordionItem title="Introduction" id="introduction">
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					</AccordionItem>
+					<AccordionItem title="Experience" id="experience">
+						<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					</AccordionItem>
+					<AccordionItem title="Testimonials" id="testimonials">
+						<p>Curabitur pretium tincidunt lacus. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices.</p>
+					</AccordionItem>
+					<AccordionItem title="Contact" id="contact">
+						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+					</AccordionItem>
+				</nav>
+			</div>
 		</main>
 	</body>
 </html>
+
+<script>
+	document.querySelectorAll('[data-accordion-trigger]').forEach((trigger) => {
+		trigger.addEventListener('click', () => {
+			const item = trigger.closest('[data-accordion-item]');
+			const isOpen = item?.classList.contains('open');
+
+			document.querySelectorAll('[data-accordion-item]').forEach((other) => {
+				other.classList.remove('open');
+				other.querySelector('[data-accordion-trigger]')?.setAttribute('aria-expanded', 'false');
+			});
+
+			if (!isOpen) {
+				item?.classList.add('open');
+				trigger.setAttribute('aria-expanded', 'true');
+			}
+		});
+	});
+</script>

@@ -1,0 +1,88 @@
+---
+interface Props {
+	title: string;
+	id: string;
+}
+
+const { title, id } = Astro.props;
+const panelId = `panel-${id}`;
+const triggerId = `trigger-${id}`;
+---
+
+<div class="accordion-item" data-accordion-item>
+	<button
+		type="button"
+		class="accordion-trigger"
+		aria-expanded="false"
+		aria-controls={panelId}
+		id={triggerId}
+		data-accordion-trigger
+	>
+		{title}
+	</button>
+	<div
+		id={panelId}
+		class="accordion-panel"
+		role="region"
+		aria-labelledby={triggerId}
+	>
+		<div class="accordion-content">
+			<slot />
+		</div>
+	</div>
+</div>
+
+<style>
+	.accordion-item {
+		border-bottom: 1px solid rgba(119, 201, 231, 0.2);
+	}
+	.accordion-item:first-child {
+		border-top: 1px solid rgba(119, 201, 231, 0.2);
+	}
+	.accordion-trigger {
+		width: 100%;
+		padding: 1rem 0;
+		background: none;
+		border: none;
+		color: #77C9E7;
+		font-family: inherit;
+		font-size: 1.25rem;
+		text-align: left;
+		cursor: pointer;
+		transition: color 0.2s ease;
+		position: relative;
+	}
+	.accordion-trigger:hover,
+	.accordion-trigger:focus-visible {
+		color: #FFFFFF;
+	}
+	.accordion-trigger::after {
+		content: '+';
+		position: absolute;
+		right: 0;
+		font-size: 1.5rem;
+		line-height: 1;
+	}
+	.accordion-item.open .accordion-trigger::after {
+		content: '−';
+	}
+	.accordion-trigger:focus-visible {
+		outline: 2px solid #77C9E7;
+		outline-offset: 2px;
+	}
+	.accordion-panel {
+		overflow: hidden;
+		max-height: 0;
+		transition: max-height 0.35s ease-out;
+	}
+	.accordion-item.open .accordion-panel {
+		max-height: 500px;
+		transition: max-height 0.4s ease-in;
+	}
+	.accordion-content {
+		padding: 0 0 1.25rem;
+		color: #FFFFFF;
+		font-size: 1rem;
+		line-height: 1.6;
+	}
+</style>
