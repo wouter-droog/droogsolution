@@ -1,0 +1,111 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	canonicalUrl?: string;
+	ogImage?: string;
+}
+
+const { title, description, canonicalUrl = 'https://droogsolution.com/', ogImage = 'https://droogsolution.com/epic-freelancer.JPG' } =
+	Astro.props;
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'Person',
+			'@id': 'https://droogsolution.com/#person',
+			name: 'Wouter Droog',
+			url: 'https://droogsolution.com',
+			jobTitle: 'Software Development Engineer in Test',
+			description: 'Freelance SDET and Test Automation Architect based in the Netherlands.',
+		},
+		{
+			'@type': 'WebSite',
+			'@id': 'https://droogsolution.com/#website',
+			url: 'https://droogsolution.com',
+			name: 'Droogsolution',
+			publisher: { '@id': 'https://droogsolution.com/#person' },
+		},
+	],
+};
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+		<link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+		<link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Protest+Guerrilla&display=swap"
+			rel="stylesheet"
+			media="print"
+			onload="this.media='all'"
+		/>
+		<noscript>
+			<link
+				href="https://fonts.googleapis.com/css2?family=Baskervville:ital@0;1&family=Protest+Guerrilla&display=swap"
+				rel="stylesheet"
+			/>
+		</noscript>
+		<style is:global>
+			:root {
+				--color-primary: #77c9e7;
+				--color-bg-start: #3c505f;
+				--color-bg-end: #2d4151;
+				--color-text: #ffffff;
+				--color-splash-bg: #0a0a0a;
+				--color-border: rgba(119, 201, 231, 0.2);
+				--font-body: 'Baskervville', serif;
+				--font-display: 'Protest Guerrilla', sans-serif;
+			}
+			body {
+				font-family: var(--font-body);
+				margin: 0;
+			}
+			.skip-link {
+				position: absolute;
+				inset-inline-start: 0.5rem;
+				top: 0.5rem;
+				padding: 0.5rem 1rem;
+				background: var(--color-primary);
+				color: var(--color-splash-bg);
+				text-decoration: none;
+				font-weight: 600;
+				border-radius: 0.25rem;
+				z-index: 10000;
+				pointer-events: none;
+				transform: translateY(-100%);
+				transition: transform 0.2s ease;
+			}
+			.skip-link:focus {
+				transform: translateY(0);
+				pointer-events: auto;
+			}
+		</style>
+		<slot name="head" />
+	</head>
+	<body>
+		<a href="#main-content" class="skip-link">Skip to content</a>
+		<slot />
+	</body>
+</html>
