@@ -28,13 +28,15 @@ import AccordionItem from '../components/AccordionItem.astro';
 				background: linear-gradient(180deg, #3C505F 0%, #2D4151 100%);
 				position: relative;
 				display: flex;
-				align-items: center;
+				align-items: flex-start;
 				justify-content: center;
+				/* Center collapsed accordion (~224px): half viewport minus half accordion height */
+				padding-top: calc(50dvh - 112px);
 				overflow-y: auto;
 				overflow-x: hidden;
 			}
 			.bg-logo {
-				position: absolute;
+				position: fixed;
 				inset: 0;
 				display: flex;
 				align-items: center;
@@ -47,12 +49,34 @@ import AccordionItem from '../components/AccordionItem.astro';
 				max-width: 400px;
 				opacity: 0.12;
 			}
+			@media (min-width: 768px) {
+				.bg-logo img {
+					max-width: 550px;
+				}
+			}
+			@media (min-width: 1200px) {
+				.bg-logo img {
+					max-width: 700px;
+				}
+			}
 			.accordion-wrapper {
 				position: relative;
 				z-index: 1;
 				width: 100%;
 				max-width: 560px;
 				padding: 2rem;
+			}
+			@media (min-width: 768px) {
+				.accordion-wrapper {
+					max-width: 680px;
+					padding: 2.5rem;
+				}
+			}
+			@media (min-width: 1200px) {
+				.accordion-wrapper {
+					max-width: 800px;
+					padding: 3rem;
+				}
 			}
 			.accordion-nav {
 				display: flex;
@@ -74,6 +98,38 @@ import AccordionItem from '../components/AccordionItem.astro';
 			}
 			.intro-content li:last-child {
 				margin-bottom: 0;
+			}
+			@media (min-width: 768px) {
+				main {
+					padding-top: calc(50dvh - 130px);
+				}
+				.intro-content p {
+					margin: 0 0 1.25rem;
+					font-size: 1.1rem;
+				}
+				.intro-content ul {
+					margin: 0.75rem 0 1.25rem;
+					padding-left: 1.5rem;
+				}
+				.intro-content li {
+					margin-bottom: 0.75rem;
+				}
+			}
+			@media (min-width: 1200px) {
+				main {
+					padding-top: calc(50dvh - 155px);
+				}
+				.intro-content p {
+					margin: 0 0 1.5rem;
+					font-size: 1.2rem;
+				}
+				.intro-content ul {
+					margin: 1rem 0 1.5rem;
+					padding-left: 1.75rem;
+				}
+				.intro-content li {
+					margin-bottom: 1rem;
+				}
 			}
 		</style>
 	</head>

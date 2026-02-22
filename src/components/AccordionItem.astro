@@ -92,4 +92,30 @@ const triggerId = `trigger-${id}`;
 		line-height: 1.6;
 		overflow-wrap: break-word;
 	}
+	@media (min-width: 768px) {
+		.accordion-trigger {
+			padding: 1.25rem 0;
+			font-size: 1.4rem;
+		}
+		.accordion-trigger::after {
+			font-size: 1.75rem;
+		}
+		.accordion-content {
+			padding: 0 0 1.5rem;
+			font-size: 1.1rem;
+		}
+	}
+	@media (min-width: 1200px) {
+		.accordion-trigger {
+			padding: 1.5rem 0;
+			font-size: 1.6rem;
+		}
+		.accordion-trigger::after {
+			font-size: 2rem;
+		}
+		.accordion-content {
+			padding: 0 0 1.75rem;
+			font-size: 1.2rem;
+		}
+	}
 </style>
