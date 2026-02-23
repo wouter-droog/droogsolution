@@ -11,6 +11,9 @@ const { title = 'Freelance', role = 'Software Development Engineer in Test', ima
 
 <button id="splash" type="button" class="splash" aria-label="Click to enter">
 	<img src={imageSrc} alt={imageAlt} loading="eager" fetchpriority="high" />
+	<span class="splash-close" aria-hidden="true" title="Close">
+		<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+	</span>
 	<span class="splash-title">{title}</span>
 	<span class="splash-role">{role}</span>
 </button>
@@ -50,6 +53,24 @@ const { title = 'Freelance', role = 'Software Development Engineer in Test', ima
 		object-fit: cover;
 		object-position: 50% 35%;
 		display: block;
+		transition: filter 0.25s ease;
+	}
+	.splash.splash--cross-visible img {
+		filter: brightness(0.85) saturate(0.8);
+	}
+	.splash-close {
+		position: absolute;
+		top: 1.5rem;
+		right: 1.5rem;
+		z-index: 2;
+		color: var(--color-text);
+		opacity: 0;
+		transition: opacity 0.25s ease;
+		pointer-events: none;
+		filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.8));
+	}
+	.splash.splash--cross-visible .splash-close {
+		opacity: 1;
 	}
 	.splash-title,
 	.splash-role {
@@ -155,15 +176,44 @@ const { title = 'Freelance', role = 'Software Development Engineer in Test', ima
 <script>
 	const splash = document.getElementById('splash');
 	const DISMISS_DURATION = 400;
+	const CROSS_HIDE_DELAY = 5000;
+	let crossHideTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	function dismiss() {
 		if (!splash) return;
 		splash.classList.add('hidden');
 		splash.setAttribute('aria-hidden', 'true');
+		document.documentElement.style.overflow = '';
+		document.body.style.overflow = '';
 		setTimeout(() => {
 			splash.classList.add('removed');
 		}, DISMISS_DURATION);
 	}
 
+	function showCross() {
+		if (!splash) return;
+		splash.classList.add('splash--cross-visible');
+		if (crossHideTimeout) clearTimeout(crossHideTimeout);
+		crossHideTimeout = setTimeout(() => {
+			splash?.classList.remove('splash--cross-visible');
+			crossHideTimeout = null;
+		}, CROSS_HIDE_DELAY);
+	}
+
+	function hideCross() {
+		if (!splash) return;
+		splash.classList.remove('splash--cross-visible');
+		if (crossHideTimeout) {
+			clearTimeout(crossHideTimeout);
+			crossHideTimeout = null;
+		}
+	}
+
+	document.documentElement.style.overflow = 'hidden';
+	document.body.style.overflow = 'hidden';
+
 	splash?.addEventListener('click', dismiss);
+	splash?.addEventListener('mouseenter', showCross);
+	splash?.addEventListener('mousemove', showCross);
+	splash?.addEventListener('mouseleave', hideCross);
 </script>
