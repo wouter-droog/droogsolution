@@ -371,6 +371,8 @@ import AccordionItem from '../components/AccordionItem.astro';
 				document.querySelectorAll('[data-accordion-item]').forEach((other) => {
 					other.classList.remove('open');
 					other.querySelector('[data-accordion-trigger]')?.setAttribute('aria-expanded', 'false');
+					const panel = other.querySelector('.accordion-panel');
+					if (panel) (panel as HTMLElement).scrollTop = 0;
 				});
 
 				if (!isOpen) {
